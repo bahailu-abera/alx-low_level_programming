@@ -13,15 +13,14 @@ int main(void)
 	for (i = 48; i <= 57; i++)
 	{
 		putchar(i);
-		putchar(10);
 	}
 
 	for (letter = 'a'; letter <= 'f'; letter++)
 	{
 		putchar(letter);
-		putchar('\n');
 	}
+
+	putchar(10);
 
 	return (0);
 }
-
