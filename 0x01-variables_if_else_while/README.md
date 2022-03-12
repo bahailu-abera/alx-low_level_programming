@@ -1,0 +1,1 @@
+all files for project variable and conditional statements 
