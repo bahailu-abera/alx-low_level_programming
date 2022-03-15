@@ -1,13 +1,14 @@
 #include "main.h"
 
 /**
- * print the alphabets as a message
+ * print_alphabet - prints the alphabet in lowercase
  *
- * Return: Void as Success
+ * Return: Always 0 (Success)
  */
 void print_alphabet(void)
 {
 	int count;
+
 	for (count = 97; count <= 122; count++)
 	{
 		_putchar(count);
