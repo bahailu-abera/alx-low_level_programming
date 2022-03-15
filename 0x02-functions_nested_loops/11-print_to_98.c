@@ -17,20 +17,20 @@ void print_to_98(int n)
 	{
 		for (count = n; count > 98; count--)
 		{
-			printf(count);
+			printf("%d", count);
 			putchar(',');
-			putchar(" ");
+			putchar(' ');
 		}
-		printf(98);
+		printf("%d", 98);
 	}
 	else
 	{
 		for (count = n; count < 98; count++)
 		{
-			printf(count);
+			printf("%d", count);
 			putchar(',');
-			putchar(" ");
+			putchar(' ');
 		}
-		printf(98);
+		printf("%d", 98);
 	}
 }
