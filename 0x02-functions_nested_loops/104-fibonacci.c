@@ -14,7 +14,7 @@ int main(void)
 	n1 = 1;
 	n2 = 2;
 	boolean1 = boolean2 = 1;
-	printf("%ld", "%ld", n1, n2);
+	printf("%ld, %ld", n1, n2);
 	for (c = 0; c < 96; c++)
 	{
 		if (boolean1)
@@ -34,7 +34,7 @@ int main(void)
 				n2 = n2 / 1000000000;
 				boolean2 = 0;
 			}
-			fn2 = (n11 + n22)
+			fn2 = (n11 + n22);
 				fn = n1 + n2 + (fn2 / 1000000000);
 			printf(", %ld", fn);
 			printf("%ld", fn2 % 1000000000);
