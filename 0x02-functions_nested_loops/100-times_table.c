@@ -20,7 +20,7 @@ void print_times_table(int n)
 			for (b = 1; b <= n; b++)
 			{
 				c = a * b;
-				_putchar(48);
+				_putchar(44);
 				_putchar(32);
 				if (c <= 9)
 				{
