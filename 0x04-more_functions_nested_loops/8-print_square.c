@@ -17,7 +17,8 @@ void print_square(int n)
 		{
 			_putchar(35);
 		}
-		_putchar(10);
+		if (i != n - 1)
+			_putchar(10);
 	}
 	_putchar(10);
 }
