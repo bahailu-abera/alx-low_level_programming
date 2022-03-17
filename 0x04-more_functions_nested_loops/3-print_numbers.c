@@ -6,7 +6,7 @@
  * Return: void
  */
 
-void print_numbers(void)
+void print_numbers()
 {
 	int i;
 
@@ -14,5 +14,5 @@ void print_numbers(void)
 	{
 		_putchar(i);
 	}
-	_putchar(10);
+	_putchar(10)
 }
