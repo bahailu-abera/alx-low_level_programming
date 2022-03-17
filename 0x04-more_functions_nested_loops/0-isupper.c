@@ -9,14 +9,12 @@
 
 int _isupper(int c)
 {
-	if (c & 32)
-	{
-		return (0);
-	}
-	else
+	if (c >= 65 && c <= 90)
 	{
 		return (1);
 	}
-
-	_putchar(10);
+	else
+	{
+		return (0);
+	}
 }
