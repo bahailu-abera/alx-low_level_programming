@@ -8,7 +8,7 @@
  * Return: void
  */
 
-void print_diagonal(int n);
+void print_diagonal(int n)
 {
 	int i;
 	int j;
@@ -25,8 +25,12 @@ void print_diagonal(int n);
 				{
 					_putchar(92);
 				}
+				else
+				{
+					_putchar(32);
+				}
 			}
+			_putchar(10);
 		}
-		_putchar(10);
 	}
 }
