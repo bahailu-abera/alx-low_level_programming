@@ -30,6 +30,7 @@ void print_number(int n);
 		b /= 10;
 		c *= 10;
 	}
+
 	for (; c >= 1; c /= 10)
 	{
 		_putchar(((a / c) % 10) + 48);
