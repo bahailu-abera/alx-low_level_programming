@@ -21,7 +21,11 @@ char *_strncpy(char *dest, char *src, int n)
 		*(dest + src_index) = *(src + src_index);
 		src_index++;
 	}
-	*(dest + src_index) = '\0';
+
+	if (*(src + src_index) == '\0')
+	{
+		*(dest + src_index) = '\0';
+	}
 
 	return (dest);
 }
