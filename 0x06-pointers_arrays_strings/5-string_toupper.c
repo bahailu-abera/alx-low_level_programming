@@ -5,7 +5,7 @@
  *
  * @s: A string
  *
- * Return : void
+ * Return : lowercase string(s)
  */
 
 char *string_toupper(char *s)
