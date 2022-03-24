@@ -22,10 +22,8 @@ char *_strncpy(char *dest, char *src, int n)
 		src_index++;
 	}
 
-	if (*(src + src_index) == '\0')
-	{
-		*(dest + src_index) = '\0';
-	}
+	for (; src_index < n; src_index++)
+		dest[src_index] = '\0';
 
 	return (dest);
 }
