@@ -1,5 +1,12 @@
 #include <stdio.h>
 
+/**
+ * main - prints the value of array
+ * at index 2
+ *
+ * Return: Always 0(success)
+ */
+
 int main(void)
 {
 	int n;
