@@ -12,34 +12,17 @@
 
 char *_strpbrk(char *s, char *accept)
 {
-	unsigned int i = 0;
-	unsigned int j;
+	unsigned int i, j;
 
-	while (*(s + i) != '\0')
+	for (i = 0; *(s + i) != '\0'; i++)
 	{
-		while (*(accept + j) != '\0')
+		for (j = 0; *(accept + j); j++)
 		{
 			if (*(s + i) == *(accept + j))
 			{
 				return (s + i);
 			}
-			j++;
 		}
-		if (*(s + i) == *(accept + j))
-		{
-			return (s + i);
-		}
-		i++;
-	}
-	j = 0;
-
-	while (*(accept + j) != '\0')
-	{
-		if (*(s + i) == *(accept + j))
-		{
-			return (s + i);
-		}
-		j++;
 	}
 	return ('\0');
 }
