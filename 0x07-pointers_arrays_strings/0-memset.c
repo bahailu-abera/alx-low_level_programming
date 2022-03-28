@@ -1,14 +1,13 @@
 #include "main.h"
 
 /**
- * _memset - fills the first n bytes of
- * the memory area pointed to by s
+ * _memset - fill memory
  *
- * @s: the memory pointed to
- * @n: the size of the memory to be filled
- * @b: the constant byte
+ * @s: th memory location
+ * @b: the byte
+ * @n: length of the memory
  *
- * Return: The address
+ * Return: the address
  */
 
 char *_memset(char *s, char b, unsigned int n)
@@ -19,5 +18,5 @@ char *_memset(char *s, char b, unsigned int n)
 	{
 		*(s + i) = b;
 	}
-	return (s);
+	return (dest);
 }
