@@ -13,18 +13,17 @@
 
 void print_diagsums(int *a, int size)
 {
-	int sum = 0;
-	unsigned int i, j;
+	int rght_diagsum = 0;
+	int lft_diagsum = 0;
+	unsigned int index = size * size;
+	unsigned int i;
 
-	for (i = 0; i < size; i++)
+	for (i = 0; i < index; i++)
 	{
-		for (j = 0; j < size; j++)
-		{
-			if (i == j)
-			{
-				sum += a[i][j];
-			}
-		}
+		if ((i == 0) || (i % (size + 1) == 0))
+			rght_diagsum += a[i];
+		if ((i % (size - 1 ) == 0) && ( i != index - 1))
+			lft_diagsum += a[i];
 	}
-	printf("%d\n", sum);
+	printf("%d, %d\n", rght_diagsum, lft_diagsum);
 }
