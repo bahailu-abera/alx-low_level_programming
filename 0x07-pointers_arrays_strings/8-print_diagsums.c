@@ -22,7 +22,7 @@ void print_diagsums(int *a, int size)
 	{
 		if (i % (size + 1) == 0)
 			rght_diagsum += a[i];
-		if ((i % (size - 1 ) == 0) && (i != index - 1) && (i != 0)
+		if ((i % (size - 1) == 0) && (i != index - 1) && (i != 0))
 			lft_diagsum += a[i];
 	}
 	printf("%d, %d\n", rght_diagsum, lft_diagsum);
