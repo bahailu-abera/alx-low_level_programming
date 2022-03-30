@@ -12,7 +12,7 @@
  */
 int comparator(char *s1, char *s2, int last_s1, int last_s2)
 {
-	if (*(s2 + last_s2 == '*'))
+	if (*(s2 + last_s2) == '*')
 		return (1);
 	if (last_s2 == 0 && last_s1 != 0)
 		return (0);
