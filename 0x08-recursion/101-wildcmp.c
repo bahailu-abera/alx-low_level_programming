@@ -13,10 +13,12 @@
 int compar(char *s1, char *s2, int last_s1, int last_s2)
 {
 	if (*(s2 + last_s2) == '*')
+	{
 		if (last_s2 - 1 == 0 || *(s2 + last_s2 - 1) != '.')
 			return (1);
 		if (last_s2 - 2 == 0 || *(s2 + last_s2 - 2) == '*')
 			return (1);
+	}
 	if (last_s2 == 0 && last_s1 != 0)
 		return (0);
 	if (last_s2 == 0 && last_s1 == 0)
