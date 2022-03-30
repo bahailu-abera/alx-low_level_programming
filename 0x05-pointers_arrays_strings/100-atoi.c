@@ -13,12 +13,10 @@ int _atoi(char *s)
 
 	for (count = 0; *(s + count) != 0; count++)
 	{
+		if (*(s + count) == 45)
+			parity *= -1;
 		if (*(s + count) >= 48 && *(s + count) <= 57)
 		{
-			if (count != 0 && *(s + count - 1) == 45)
-			{
-				parity = -1;
-			}
 			temp = (temp * 10) + (*(s + count) - 48);
 
 			if (*(s + count + 1) < 48 || *(s + count + 1) > 57)
