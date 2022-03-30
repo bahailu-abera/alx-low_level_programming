@@ -28,7 +28,7 @@ int is_prime(int n, int c)
  * Return: 1(prime) or 0(not prime)
  */
 
-int is_prime_number(int n);
+int is_prime_number(int n)
 {
 	if (n <= 1)
 		return (0);
