@@ -15,6 +15,8 @@ int comparator(char *s, int first, int last)
 {
 	if (first == last)
 		return (1);
+	if (last < first)
+		return (1);
 	if (*(s + first) != *(s + last))
 		return (0);
 	return (comparator(s, first + 1, last - 1));
