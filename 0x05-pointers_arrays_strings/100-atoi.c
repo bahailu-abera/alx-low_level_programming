@@ -1,67 +1,31 @@
 #include "main.h"
 
 /**
+ * _atoi - convert a string to an integer
+ * @s: the string
  *
- *  * print_number - prints an integer.
- *
- *   * @n: input integer.
- *
- *    * Return: no return.
- *
- *     */
+ * Return: the number
+ */
 
-void print_number(int n)
-
+int _atoi(char *s)
 {
+	unsigned int count, parity = 1, temp = 0;
 
-	    unsigned int m, d, count;
+	for (count = 0; *(s + count) != 0; count++)
+	{
+		if (*(s + count) >= 48 && *(s + count) <= 57)
+		{
+			if (count != 0 && *(s + count - 1) == 45)
+			{
+				parity = -1;
+			}
+			temp = (temp * 10) + (*(s + count) - 48);
 
-
-
-	        if (n < 0)
-
-			    {
-
-				            _putchar(45);
-
-					            m = n * -1;
-
-						        }
-
-		    else
-
-			        {
-
-					        m = n;
-
-						    }
-
-
-
-		        d = m;
-
-			    count = 1;
-
-
-
-			        while (d > 9)
-
-					    {
-
-						            d /= 10;
-
-							            count *= 10;
-
-								        }
-
-
-
-				    for (; count >= 1; count /= 10)
-
-					        {
-
-							        _putchar(((m / count) % 10) + 48);
-
-								    }
-
+			if (*(s + count + 1) < 48 || *(s + count + 1) > 57)
+			{
+				break;
+			}
+		}
+	}
+	return (temp * parity);
 }
