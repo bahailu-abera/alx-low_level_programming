@@ -13,14 +13,14 @@ int main(void)
 	time_t t;
 
 	srand((unsigned int) time(&t));
-	while (count < 3000)
+	while (count < 2772)
 	{
 		r = rand() % 128;
-		if ((count + r) > 3000)
+		if ((count + r) > 2772)
 			break;
 		count = count + r;
 		printf("%c", r);
 	}
-	printf("%c\n", (3000 - count));
+	printf("%c\n", (2772 - count));
 	return (0);
 }
