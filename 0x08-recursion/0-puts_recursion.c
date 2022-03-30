@@ -11,19 +11,12 @@
 
 void _puts_recursion(char *s)
 {
-	char *s2;
-	unsigned int i = 0;
-
-	if (*s == '\0')
-		_putchar(10);
-	else
-		_putchar(s[0]);
-	while (*(s + i) != '\0')
+	if (*s != '\0')
 	{
-		*(s2 + i) = *(s + i + 1);
-		i++;
+		_putchar(s[0]);
+		_puts_recursion(s + 1);
 	}
-	*(s2 + i) = '\0';
-	return (_puts_recursion(s2));
+	else
+		_putchar(10);
 }
 
