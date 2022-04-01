@@ -11,7 +11,7 @@
 
 int main(int argc, char **argv)
 {
-	unsigned int i;
+	int i;
 
 	for (i = 0; i < argc; i++)
 	{
