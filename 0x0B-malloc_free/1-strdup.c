@@ -35,4 +35,4 @@ char *_strdup(char *str)
 	}
 	*(newstr + size) = '\0';
 	return (newstr);
-
+}
