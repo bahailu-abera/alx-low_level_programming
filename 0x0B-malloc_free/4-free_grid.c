@@ -4,8 +4,8 @@
 /**
  * free_grid - free 2D allocated memory
  *
- * @grid - the 2D grid
- * @height - the height of the grid
+ * @grid: the 2D grid
+ * @height: the height of the grid
  *
  * Return: void
  */
