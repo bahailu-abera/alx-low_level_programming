@@ -12,6 +12,9 @@ char **strtow(char *str)
 	char *word;
 	char *arr;
 
+	if (str == NULL || *str == '\0')
+		return (NULL);
+
 	for (i = j = 0; str[i] != '\0'; i++)
 	{
 		if (str[i] != 32)
