@@ -41,7 +41,7 @@ char *argstostr(int ac, char **av)
 		}
 		*(str + count) = '\n';
 		j++;
-		count++:
+		count++;
 	}
 	return (str);
 }
