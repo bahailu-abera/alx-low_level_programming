@@ -13,35 +13,40 @@
 
 char *argstostr(int ac, char **av)
 {
-	int count = 0, i, size = 0, j = 0;
+	int count = 0, i, size = 0, j;
 	char *str;
 
 	if (ac == 0 || av == NULL)
 		return (NULL);
 	while (count < ac)
 	{
+		if (av[count] == NULL)
+			return (NULL);
 		for (i = 0; av[count][i] != '\0'; i++)
-			;
-		size += i;
+			size++;
+		size++;
 		count++;
 	}
-	str = malloc((sizeof(char) * size) + ac);
+	str = malloc(sizeof(char) * (size + 1));
 	if (str == NULL)
 	{
 		free(str);
 		return (NULL);
 	}
-	count = 0;
-	while (count < size)
+	for (i = count = j = 0; count < size; count++, j++)
 	{
-		for (i = 0; av[j][i] != '\0'; i++)
+		if (av[i][j] == '\0')
 		{
-			*(str + count) = av[j][i];
+			str[count] = '\n';
 			count++;
+			i++;
+			j = 0;
 		}
-		*(str + count) = '\n';
-		j++;
-		count++;
+		if (count < size - 1)
+		{
+			str[count] = av[i][j];
+		}
 	}
+	str[count] = '\0';
 	return (str);
 }
