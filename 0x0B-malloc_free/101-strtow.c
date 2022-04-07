@@ -10,7 +10,7 @@ char **strtow(char *str)
 {
 	int i, j, k = 0, count, ar = 0;
 	char *word;
-	char *arr;
+	char **arr;
 
 	if (str == NULL || *str == '\0')
 		return (NULL);
