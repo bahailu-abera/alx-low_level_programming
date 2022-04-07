@@ -51,7 +51,7 @@ char **strtow(char *str)
 					free(arr);
 					return (NULL);
 				}
-				for (k = 0; k < j; k++)
+				for (k = 0; k < j - 1; k++)
 				{
 					word[k] = *(str + count);
 					count++;
