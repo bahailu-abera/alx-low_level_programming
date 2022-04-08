@@ -1,58 +1,53 @@
 #include "main.h"
 #include <stdlib.h>
 
-
 /**
- * string_nconcat - concatenates two strings
+ * string_nconcat - concatenates string
  *
  * @s1: the first string
  * @s2: the second string
- * @n: number of the second string characters
- * to concatenate
- * Return:pointer to the concatenated string
+ * @n: the length of s2 character to be
+ * concat
+ *
+ * Return: pointer to the result
  */
 
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *res;
-	unsigned int len_s1, len_s2, count = 0;
+	unsigned int len_s1, len_s2, len_res, i;
 
 	if (s1 == NULL)
 		s1 = "";
+
 	if (s2 == NULL)
 		s2 = "";
 
-	while (*(s1 + count) != '\0' && *(s2 + count) != '\0')
-	{
-		count++;
-	}
-	len_s1 = len_s2 = count;
-	while (*(s1 + count) != '\0')
-	{
-		count++;
-	}
-	len_s1 = count + 1;
-	while (*(s2 + len_s2) != '\0')
-	{
-		len_s2++;
-	}
-	len_s2 += 1;
+	for (len_s1 = 0; s1[len_s1] != '\0'; len_s1++)
+		;
 
-	((n >= len_s2) ? (n = len_s2) : (n = n));
+	for (len_s2 = 0; s2[len_s2] != '\0'; len_s2++)
+		;
 
-	res = malloc(sizeof(res) * (len_s1 + n));
+	if (n > len_s2)
+		n = len_s2;
+
+	len_res = len_s1 + n;
+
+	res = malloc(len_res + 1);
 
 	if (res == NULL)
 		return (NULL);
 
-	for (count = 0; *(s1 + count) != '\0'; count++)
+	for (i = 0; i < len_res; i++)
 	{
-		*(res + count) = *(s1 + count);
+		if (i < len_s1)
+			res[i] = s1[i];
+		else
+			res[i] = s2[i - len_s1];
 	}
-	for (len_s2 = 0; len_s2 < n; len_s2++)
-	{
-		*(res + count) = *(s2 + len_s2);
-		count++;
-	}
+	res[i] = '\0';
 	return (res);
 }
+
+
