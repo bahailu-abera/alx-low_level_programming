@@ -1,5 +1,5 @@
 #include "main.h"
-#include <sdtlib.h>
+#include <stdlib.h>
 
 
 /**
@@ -12,7 +12,7 @@
  * Return:pointer to the concatenated string
  */
 
-char *string_nconcat(char *s1, *s2, unsigned int n)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
 	char *res;
 	unsigned int len_s1, len_s2, count = 0;
@@ -20,7 +20,7 @@ char *string_nconcat(char *s1, *s2, unsigned int n)
 	if (s1 == NULL)
 		s1 = "";
 	if (s2 == NULL)
-		s2 = "";*
+		s2 = "";
 
 	while (*(s1 + count) != '\0' && *(s2 + count) != '\0')
 	{
@@ -38,7 +38,7 @@ char *string_nconcat(char *s1, *s2, unsigned int n)
 	}
 	len_s2 += 1;
 
-	(n >= len_s2) ? n = len_s2 : n = n;
+	((n >= len_s2) ? (n = len_s2) : (n = n));
 
 	res = malloc(sizeof(res) * (len_s1 + n));
 
@@ -54,6 +54,5 @@ char *string_nconcat(char *s1, *s2, unsigned int n)
 		*(res + count) = *(s2 + len_s2);
 		count++;
 	}
-
 	return (res);
 }
