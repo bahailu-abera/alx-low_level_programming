@@ -2,8 +2,8 @@
 
 
 /**
- * main - prints the file name of 
- * the program 
+ * main - prints the file name of
+ * the program
  *
  * Return: 0
  */
