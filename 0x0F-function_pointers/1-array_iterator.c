@@ -6,6 +6,7 @@
  *
  * @size: the size of the array
  * @action: pointer to the function
+ * @array: array of integer
  *
  * Return: void
  */
