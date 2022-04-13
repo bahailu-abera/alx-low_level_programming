@@ -1,3 +1,4 @@
+#include "main.h"
 /**
  * init_dog - initializes instance of dog
  * @d: struct d
