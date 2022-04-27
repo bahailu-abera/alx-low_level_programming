@@ -10,7 +10,7 @@
  * Return: the head of the linked list
  */
 
-list_t *add_nodeint(listint_t **head, const int n)
+listint_t *add_nodeint(listint_t **head, const int n)
 {
 	listint_t *new_node;
 
