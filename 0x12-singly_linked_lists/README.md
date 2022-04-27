@@ -12,7 +12,7 @@ This project is a single linked list problems with c progamming language.
 below is the description for all files.
 
 
-|*file name*         | *Description *                                                 |
+|*file name*         | Description                                                |
 |----------------- | ------------------------------------------------------------- | 
 |lists.h           | Header file which contains all the prototypes of the function |
 | 0-print_list.c   | a function that prints all the elements of a list_t list.     | 
