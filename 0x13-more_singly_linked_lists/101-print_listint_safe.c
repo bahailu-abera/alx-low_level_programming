@@ -13,8 +13,7 @@ size_t print_listint_safe(const listint_t *h)
 	size_t n = 0;
 	listint_t *temp = malloc(sizeof(listint_t)), *nex, *cur;
 
-	if (!(cur = (void *)h))
-		exit(98);
+	cur = (void *)h;
 
 	for (; cur != NULL && cur->next != temp; n++)
 	{
@@ -23,9 +22,6 @@ size_t print_listint_safe(const listint_t *h)
 		printf("[%p] %d\n", (void *)cur, cur->n);
 		cur = nex;
 	}
-
-	if (cur)
-		printf("-> [%p] %d\n", (void *)cur, cur->n);
 
 	free(temp);
 	return (n);
