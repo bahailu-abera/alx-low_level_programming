@@ -22,6 +22,8 @@ size_t print_listint_safe(const listint_t *h)
 		printf("[%p] %d\n", (void *)cur, cur->n);
 		cur = nex;
 	}
+	if (cur)
+		printf("-> [%p] %d\n", (void *)cur, cur->n);
 
 	free(temp);
 	return (n);
