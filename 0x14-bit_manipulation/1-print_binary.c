@@ -20,5 +20,4 @@ void print_binary(unsigned long  int n)
 
 	while (bit_pos >= 0)
 		printf("%lu", ((n >> bit_pos) & 1)), --bit_pos;
-	printf("\n");
 }
