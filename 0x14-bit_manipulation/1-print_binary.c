@@ -19,5 +19,5 @@ void print_binary(unsigned long  int n)
 		temp >>= 1;
 
 	while (bit_pos >= 0)
-		((n >> bit_pos) & 1) ? _putchar('1'): _putchar('0'), --bit_pos;
+		((n >> bit_pos) & 1) ? _putchar('1') : _putchar('0'), --bit_pos;
 }
