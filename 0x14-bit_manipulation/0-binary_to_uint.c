@@ -20,8 +20,8 @@ unsigned int power(int a, int b)
  * binary_to_uint - converts a binary number to an unsigned int.
  * @b: pointer to a string of zero and one
  *
- * Return: converted number (success) 
- * 	  0(failure)
+ * Return: converted number (success)
+ *         0(failure)
  */
 
 unsigned int binary_to_uint(const char *b)
@@ -29,6 +29,8 @@ unsigned int binary_to_uint(const char *b)
 	unsigned int num = 0;
 	int len = 0, i;
 
+	if (!b)
+		return (0);
 
 	for (; b[len] != '\0'; len++)
 		if (b[len] != '0' && b[len] != '1')
