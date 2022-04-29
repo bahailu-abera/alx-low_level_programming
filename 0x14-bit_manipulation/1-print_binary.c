@@ -13,12 +13,12 @@
 void print_binary(unsigned long  int n)
 {
 	int bit_pos = 0;
-	unsigned long int temp;
+	unsigned long int temp = n;
 
 	while ((temp > 1) && (++bit_pos))
 		temp >>= 1;
 
 	while (bit_pos >= 0)
-		printf("%d", ((n >> bit_pos) & 1));
+		printf("%lu", ((n >> bit_pos) & 1)), --bit_pos;
 	printf("\n");
 }
