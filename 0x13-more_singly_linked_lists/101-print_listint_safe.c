@@ -21,11 +21,11 @@ size_t print_listint_safe(const listint_t *h)
 	{
 		nex = cur->next;
 		cur->next = temp;
-		printf("[%p] %d\n", (void *)cur, cur->n);
+		printf("%d\n", cur->n);
 		cur = nex;
 	}
 	if (cur)
-		printf("-> [%p] %d\n", (void *)cur, cur->n);
+		printf("->%d\n", cur->n);
 
 	free(temp);
 	return (n);
