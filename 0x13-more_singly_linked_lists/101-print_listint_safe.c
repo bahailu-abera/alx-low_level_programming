@@ -3,53 +3,30 @@
 
 
 /**
- * detect_and_del - detect and remove loop
+ * free_visited - frees memory allocated by malloc
  * @head: the head of the linked list
- * @loop: node where loop is detected
  *
  * Return: void
- * of linear list
  */
 
-void  detect_and_del(listint_t *head, listint_t **loop)
+void  free_visited(visited_t **head)
 {
-	listint_t *slow, *fast;
+	visited_t *prev = NULL, *cur;
 
-	if (head == NULL || (head)->next == NULL)
-		return;
-	slow = head, fast = head;
-	slow = slow->next;
-	fast = fast->next->next;
-
-	while (fast && fast->next && slow != fast)
+	if (head != NULL)
 	{
-		slow = slow->next;
-		fast = fast->next->next;
-	}
+		cur = *head;
 
-	if (slow != fast)
-		return;
-
-	slow = head;
-
-	/* if they meet at the head of the linked list */
-	if (slow == fast)
-	{
-		while (fast->next != slow)
-			fast = fast->next;
-		*loop = fast;
-	}
-	else
-	{
-		while (slow->next != fast->next)
+		while ((prev = cur) != NULL)
 		{
-			slow = slow->next;
-			fast = fast->next;
+			cur = cur->next;
+			free(prev);
 		}
-		*loop = fast;
-	}
-}
+		*head = NULL;
 
+	}
+
+}
 
 /**
  * print_listint_safe - prints the elements of a list
@@ -62,21 +39,35 @@ void  detect_and_del(listint_t *head, listint_t **loop)
 size_t print_listint_safe(const listint_t *h)
 {
 	size_t n = 0;
-	listint_t *loop = NULL, *cur;
+	visited_t *new, *vhead, *cur;
 
-	detect_and_del((void *)h, &loop);
-	cur = (void *)h;
-	for (; cur != NULL; cur = cur->next, n++)
+	vhead = NULL;
+
+	for (; h != NULL; h = h->next, n++)
 	{
-		printf("%d\n", cur->n);
-		if (cur == loop)
+		new = malloc(sizeof(visited_t));
+
+		if (new == NULL)
+			exit(98);
+
+		new->p = (void *)h;
+		new->next = vhead;
+		vhead = new;
+		cur = vhead;
+		
+		while (cur->next != NULL)
 		{
-			printf("-> %d\n", cur->next->n);
-			cur->next = NULL;
+			cur = cur->next;
+			if (cur->p == h)
+			{
+				printf("-> [%p] %d\n", (void *)h, h->n);
+				free_visited(&vhead);
+				return (n);
+			}
 		}
+
+		printf("[%p] %d\n", (void *)h, h->n);
 	}
-
-	free_listint((void *)h);
-
+	free_visited(&vhead);
 	return (n);
 }
