@@ -21,6 +21,20 @@ typedef struct listint_s
 } listint_t;
 
 
+/**
+ * struct visited - visited nodes
+ * @p: pointer to the visited node
+ * @next: points to the next visited node
+ *
+ * Description: singly linked list node structure
+ */
+
+typedef struct visited
+{
+	void *p;
+	struct visited *next;
+} visited_t;
+
 size_t print_listint(const listint_t *h);
 size_t listint_len(const listint_t *h);
 listint_t *add_nodeint(listint_t **head, const int n);
