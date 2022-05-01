@@ -54,7 +54,7 @@ size_t print_listint_safe(const listint_t *h)
 		new->next = vhead;
 		vhead = new;
 		cur = vhead;
-		
+
 		while (cur->next != NULL)
 		{
 			cur = cur->next;
