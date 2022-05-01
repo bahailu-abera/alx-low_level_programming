@@ -6,13 +6,14 @@
 /**
  * main - check the code
  *
- * Return:  0.
+ * Return: Always 0.
  */
 int main(void)
 {
     listint_t *head;
     listint_t *head2;
     listint_t *node;
+
     head2 = NULL;
     add_nodeint(&head2, 0);
     add_nodeint(&head2, 1);
@@ -20,7 +21,7 @@ int main(void)
     add_nodeint(&head2, 3);
     add_nodeint(&head2, 4);
     add_nodeint(&head2, 98);
-    add_nodeint(&head2, 403);
+    add_nodeint(&head2, 402);
     add_nodeint(&head2, 1024);
     print_listint_safe(head2);
     head = NULL;
@@ -33,6 +34,8 @@ int main(void)
     add_nodeint(&head, 402);
     add_nodeint(&head, 1024);
     print_listint_safe(head);
-
+    free_listint_safe(&head2);
+    free_listint_safe(&head);
+    printf("%p, %p\n", (void *)head2, (void *)head);
     return (0);
 }
