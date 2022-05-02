@@ -3,23 +3,22 @@
 
 
 /**
- * free_visited - frees memory allocated by malloc
+ * free_list - frees memory allocated by malloc
  * @head: the head of the linked list
  *
  * Return: void
  */
 
-void  free_visited(visited_t **head)
+void  free_list(visited_t **head)
 {
-	visited_t *prev = NULL, *cur;
+	visited_t *prev = NULL;
 
 	if (head != NULL)
 	{
-		cur = *head;
 
-		while ((prev = cur) != NULL)
+		while ((prev = *head) != NULL)
 		{
-			cur = cur->next;
+			*head = (*head)->next;
 			free(prev);
 		}
 		*head = NULL;
@@ -61,13 +60,13 @@ size_t print_listint_safe(const listint_t *h)
 			if (cur->p == h)
 			{
 				printf("-> [%p] %d\n", (void *)h, h->n);
-				free_visited(&vhead);
+				free_list(&vhead);
 				return (n);
 			}
 		}
 
 		printf("[%p] %d\n", (void *)h, h->n);
 	}
-	free_visited(&vhead);
+	free_list(&vhead);
 	return (n);
 }
