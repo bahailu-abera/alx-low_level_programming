@@ -1,31 +1,5 @@
 #include "lists.h"
-#include "4-free_listint.c"
-
-
-/**
- * free_list - frees memory allocated by malloc
- * @head: the head of the linked list
- *
- * Return: void
- */
-
-void  free_list(visited_t **head)
-{
-	visited_t *prev = NULL;
-
-	if (head != NULL)
-	{
-
-		while ((prev = *head) != NULL)
-		{
-			*head = (*head)->next;
-			free(prev);
-		}
-		*head = NULL;
-
-	}
-
-}
+#include "free_visited.c"
 
 /**
  * print_listint_safe - prints the elements of a list
@@ -59,14 +33,16 @@ size_t print_listint_safe(const listint_t *h)
 			cur = cur->next;
 			if (cur->p == h)
 			{
+				cur = vhead, vhead = vhead->next;
+				free(cur);
 				printf("-> [%p] %d\n", (void *)h, h->n);
-				free_list(&vhead);
+				free_visited(&vhead);
 				return (n);
 			}
 		}
 
 		printf("[%p] %d\n", (void *)h, h->n);
 	}
-	free_list(&vhead);
+	free_visited(&vhead);
 	return (n);
 }
