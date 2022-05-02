@@ -2,32 +2,6 @@
 
 
 /**
- * free_visited - frees memory allocated by malloc
- * @head: the head of the linked list
- *
- * Return: void
- */
-
-void  free_visited(visited_t **head)
-{
-	visited_t *prev = NULL, *vst;
-
-	if (head != NULL)
-	{
-		vst = *head;
-
-		while ((prev = vst) != NULL)
-		{
-			vst = vst->next;
-			free(prev);
-		}
-		*head = NULL;
-
-	}
-
-}
-
-/**
  * free_listint_safe - frees the elements of a list
  *
  * @h: first node of the list
@@ -39,7 +13,6 @@ size_t free_listint_safe(listint_t **h)
 {
 	size_t n = 0;
 	visited_t *new, *vhead, *vst;
-	listint_t *prev;
 
 	if (h == NULL)
 		return (0);
@@ -63,18 +36,16 @@ size_t free_listint_safe(listint_t **h)
 			vst = vst->next;
 			if (vst->p == *h)
 			{
+				vst = vhead, vhead = vhead->next;
+				free(vst);
 				*h = NULL;
-				free_visited(&vhead);
 				return (n);
 			}
 		}
 
-		prev = *h;
 		*h = (*h)->next;
-		free(prev);
 
 	}
-	*h = NULL;
 	free_visited(&vhead);
 	return (n);
 }
