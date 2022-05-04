@@ -1,4 +1,4 @@
-## File input Output using c and linux syscall
+# File input Output using c and linux syscall
 
 In this repo we see how to create, open, read, and write files
 
@@ -31,7 +31,7 @@ what is table entry ?
 	we see any error to the video screen, it also from that file
 	write to stderr in screen through fd 2.
 
-## I/O system calls
+# I/O system calls
 1. Create: used to create a new empty file.
 	- prototype is: int create(char *filename, mode_t mode)
 	filename: name of the file which you want to create
@@ -84,7 +84,8 @@ what is table entry ?
 
 ## Function description of the files for the repository is here below.
 
-| file     |     Description                                        |-| -------- | -------------------------------------------------------|
+| file     |     Description                                        |
+|--------  | -------------------------------------------------------|
 | 0-read_textfile.c | a function that reads a text file and prints it to the POSIX standard output. |
 | 1-create_file.c |  a function that creates a file. |
 | 2-append_text_to_file.c | a function that appends text at the end of a file.|
