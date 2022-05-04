@@ -45,11 +45,11 @@ what is table entry ?
 		- set first unused file descriptor to point to file entry.
 		- Return file descriptor used, -1 upon failure.
 2. open: used to open the file for reading, writing or both.
-	# Syntax in c language
-	\#include <sys/types.h>
-	\#include <sys/stat.h>
-	\#include <fcntl.h>
-	int open (const char * path, int flags [, int mode ]);
+	# Syntax in c language\n
+	#include <sys/types.h>\n
+	#include <sys/stat.h>\n
+	#include <fcntl.h>\n
+	int open (const char * path, int flags [, int mode ]);\n
 
 	- Path: path to file which you want to use 
 		- use absolute path begin with “/”, when you are not work in same directory of file.
