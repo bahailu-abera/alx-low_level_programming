@@ -2,7 +2,7 @@
 
 In this repo we see how to create, open, read, and write files
 
-# Important terminology
+### Important terminology
 
 what is File Descriptor?
        File Descriptor is integer that uniquely identifies an 
@@ -13,25 +13,25 @@ what is file Descriptor table?
 what is table entry ?
 	File table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
 
-# Standard File Decriptors:
+### Standard File Decriptors:
 	when any process starts, then that process file descriptors
 	tables-s fd (file descriptor) 0, 1, 2 open automatically,
 	(by default) each of these 3 fd references file table entry for a file named /dev/tty.
 
-# /dev/tty/:
+### /dev/tty/:
 	In-memory surrogate for the terminal
 
-# Read from stdinv (fd = 0):
+### Read from stdinv (fd = 0):
 	Whenerver we write any character from the keyboard, it read from stdin through fd 0 and save to file named /dev/tty.
 
-# Write to stdout (fd = 1):
+### Write to stdout (fd = 1):
 	Whenever we see any output to the video screen, it's from the file named /dev/tty/ and written to stdout in screen through fd 1.
 
-# Write to stderr(fd = 2): 
+### Write to stderr(fd = 2): 
 	we see any error to the video screen, it also from that file
 	write to stderr in screen through fd 2.
 
-# I/O system calls
+### I/O system calls
 1. Create: used to create a new empty file.
 	- prototype is: int create(char *filename, mode_t mode)
 	filename: name of the file which you want to create
@@ -41,7 +41,7 @@ what is table entry ?
 		- return first unused file descriptor (generrally 3  when first
 		create use in process beacause 0, 1, 2 fd are reserved.
 		- return -1 when error occured.
-	# How it works on Os
+	##### How it works on Os
 		- Create a new empty file on the disk.
 		- create a file table entry 
 		- set first unused file descriptor to point to file entry.
@@ -62,7 +62,7 @@ what is table entry ?
 		- O_RDWR: read and write.
 		- O_CREAT: create file if it doesn’t exist.
 		- O_EXCL: prevent creation if it already exists.
-	# How it works in OS
+	###### How it works in OS
 		- Find the existing file on disk
 		- Create file table entry
 		- Set first unused file descriptor to point to file table entry
@@ -77,7 +77,7 @@ what is table entry ?
 		- 0 on success.
 		- -1 0n error.
 
-	# How it works in the OS
+	##### How it works in the OS
 		- Destroy file table entry referenced by element fd of file descriptor table
 		- Set element fd of file descriptor table to NULL
 
@@ -91,4 +91,35 @@ what is table entry ?
 | 2-append_text_to_file.c | a function that appends text at the end of a file.|
 | 3-cp.c | a program that copies the content of a file to another file.|
 | 100-elf_header.c | a program that displays the information contained in the ELF header at the start of an ELF file.|
+
+
+_____________________________________________________________________________________________________________________________________
+## What is the Difference Between System Call and Function Call ?
+
+The main difference between system call and function call is system call is a request made by a program  to the kernal 
+to access specific resource and function call is a request made by a program to perform a specific task.
+	- System calls are used when a program needs to communicate with the kernel.
+	- function calls are used to call a specific function within the program.
+
+### what is system call ?
+**Note:**
+   computer operate in two modes of operation one Kernal mode and the other is user mode.
+   - Kernal Mode: Is a privileged  mode that allows  programs to access  memory and any other hardware directly.
+   - User Mode: the programs cannot directly access memory and hardware resources.
+   	When a program needs memory or a resource, it communicates with the kernel via a system call.
+In other words a **system call** is a request sent to the kernal by other programs to access resource.
+	Then the mode chanfes from user mode to kernal mode. Afer completing the task the mode
+	switches back to the user mode. We call this mode transition as context switching.
+### What is Function Call  ?
+**A function call is a call that passes control to a function. **
+
+A function is a set of statements that performs a specific task. Rather than writing all the statements inside the main function, the programmer can call the functions as required. Syntax of a function is as follows.
+
+return_type function_name(parameter list){
+
+            //statements inside the function
+
+}
+
+
 
