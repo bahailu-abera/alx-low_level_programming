@@ -5,11 +5,9 @@ In this repo we see how to create, open, read, and write files
 ### Important terminology
 
 what is File Descriptor?
-       File Descriptor is integer that uniquely identifies an 
-       open file of the process.
+	File Descriptor is integer that uniquely identifies an open file of the process.
 what is file Descriptor table?
 	File descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.
-
 what is table entry ?
 	File table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
 
@@ -108,10 +106,9 @@ to access specific resource and function call is a request made by a program to 
    - **User Mode:** the programs cannot directly access memory and hardware resources.
    	When a program needs memory or a resource, it communicates with the kernel via a system call.
 \nIn other words a **system call** is a request sent to the kernal by other programs to access resource.
-	Then the mode chanfes from user mode to kernal mode. Afer completing the task the mode
-	switches back to the user mode. We call this mode transition as context switching.
+Then the mode changes from user mode to kernal mode. Afer completing the task the modeswitches back to the user mode. We call this mode transition as **context switching.**
 ### What is Function Call  ?
-**A function call is a call that passes control to a function. **
+**A function call is a call that passes control to a function.**
 
 A function is a set of statements that performs a specific task. Rather than writing all the statements inside the main function, the programmer can call the functions as required. Syntax of a function is as follows.
 
@@ -119,6 +116,13 @@ return_type function_name(parameter list){
 
             //statements inside the function
 	    }
+##########A system call is a function provided by the kernel to enter kernel mode to access a resource while a function call is a request made by a program or script that execute a predetermined function. Thus, this is the main difference between system call and function call.
+
+#########Also, another difference between system call and function call is the [context switching](https://en.wikipedia.org/wiki/Context_switch). Context switching occurs in system calls; however, there is no context switching occurrence in function calls.
+
+#############System calls allow the program to access memory or a hardware resource from the kernel while function calls help to pass the control to a specific function and to execute the defined task. Hence, this is the functional difference between system call and function call.
+
+
 
 
 
