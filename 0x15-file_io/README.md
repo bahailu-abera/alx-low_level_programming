@@ -5,11 +5,11 @@ In this repo we see how to create, open, read, and write files
 ### Important terminology
 
 what is File Descriptor?
-	File Descriptor is integer that uniquely identifies an open file of the process.
+	\nFile Descriptor is integer that uniquely identifies an open file of the process.
 what is file Descriptor table?
-	File descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.
+	\nFile descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.
 what is table entry ?
-	File table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
+	\nFile table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
 
 ### Standard File Decriptors:
 	when any process starts, then that process file descriptors
@@ -116,11 +116,11 @@ return_type function_name(parameter list){
 
             //statements inside the function
 	    }
-##########A system call is a function provided by the kernel to enter kernel mode to access a resource while a function call is a request made by a program or script that execute a predetermined function. Thus, this is the main difference between system call and function call.
+###### system call is a function provided by the kernel to enter kernel mode to access a resource while a function call is a request made by a program or script that execute a predetermined function. Thus, this is the main difference between system call and function call.
 
-#########Also, another difference between system call and function call is the [context switching](https://en.wikipedia.org/wiki/Context_switch). Context switching occurs in system calls; however, there is no context switching occurrence in function calls.
+###### Also, another difference between system call and function call is the [context switching](https://en.wikipedia.org/wiki/Context_switch). Context switching occurs in system calls; however, there is no context switching occurrence in function calls.
 
-#############System calls allow the program to access memory or a hardware resource from the kernel while function calls help to pass the control to a specific function and to execute the defined task. Hence, this is the functional difference between system call and function call.
+###### System calls allow the program to access memory or a hardware resource from the kernel while function calls help to pass the control to a specific function and to execute the defined task. Hence, this is the functional difference between system call and function call.
 
 
 
