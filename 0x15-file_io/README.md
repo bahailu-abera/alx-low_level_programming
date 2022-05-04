@@ -5,7 +5,7 @@ In this repo we see how to create, open, read, and write files
 ### Important terminology
 
 what is File Descriptor? <br>
-	File Descriptor is integer that uniquely identifies an open file of the process.<br>>
+	File Descriptor is integer that uniquely identifies an open file of the process.<br>
 what is file Descriptor table?<br>
 	File descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.<br>
 what is table entry ? <br>
@@ -16,7 +16,7 @@ what is table entry ? <br>
 	tables-s fd (file descriptor) 0, 1, 2 open automatically,
 	(by default) each of these 3 fd references file table entry for a file named /dev/tty.
 
-### /dev/tty/: <br>
+### /dev/tty/: 
 	In-memory surrogate for the terminal <br>
 
 ### Read from stdinv (fd = 0): <br>
@@ -39,7 +39,7 @@ what is table entry ? <br>
 		- return first unused file descriptor (generrally 3  when first<br>
 		create use in process beacause 0, 1, 2 fd are reserved.<br>
 		- return -1 when error occured.<br>
-        **How it works on Os**
+        How it works on Os
 		- Create a new empty file on the disk.
 		- create a file table entry 
 		- set first unused file descriptor to point to file entry.
@@ -75,7 +75,7 @@ what is table entry ? <br>
 		- 0 on success.
 		- -1 0n error.
 
-     **How it works in the OS**
+     How it works in the OS
 		- Destroy file table entry referenced by element fd of file descriptor table
 		- Set element fd of file descriptor table to NULL
 
