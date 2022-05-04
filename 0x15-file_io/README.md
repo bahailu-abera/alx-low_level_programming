@@ -103,11 +103,11 @@ to access specific resource and function call is a request made by a program to 
 
 ### what is system call ?
 **Note:**
-   computer operate in two modes of operation one Kernal mode and the other is user mode.
-   - Kernal Mode: Is a privileged  mode that allows  programs to access  memory and any other hardware directly.
-   - User Mode: the programs cannot directly access memory and hardware resources.
+   computer operate in two modes of operation one **Kernal mode** and the other is **user mode**.
+   - **Kernal Mode:** Is a privileged  mode that allows  programs to access  memory and any other hardware directly.
+   - **User Mode:** the programs cannot directly access memory and hardware resources.
    	When a program needs memory or a resource, it communicates with the kernel via a system call.
-In other words a **system call** is a request sent to the kernal by other programs to access resource.
+\nIn other words a **system call** is a request sent to the kernal by other programs to access resource.
 	Then the mode chanfes from user mode to kernal mode. Afer completing the task the mode
 	switches back to the user mode. We call this mode transition as context switching.
 ### What is Function Call  ?
@@ -118,8 +118,7 @@ A function is a set of statements that performs a specific task. Rather than wri
 return_type function_name(parameter list){
 
             //statements inside the function
-
-}
+	    }
 
 
 
