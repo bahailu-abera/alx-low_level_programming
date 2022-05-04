@@ -5,11 +5,11 @@ In this repo we see how to create, open, read, and write files
 ### Important terminology
 
 what is File Descriptor?
-	\nFile Descriptor is integer that uniquely identifies an open file of the process.
+	File Descriptor is integer that uniquely identifies an open file of the process.
 what is file Descriptor table?
-	\nFile descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.
+	File descriptor table is the collection of integr array indices that are file descriptors in which elements are pointers to file table entries.
 what is table entry ?
-	\nFile table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
+	File table entry is a structure in memory surrogate for an open file, which is created when process request to open file and these entries maintains file position.
 
 ### Standard File Decriptors:
 	when any process starts, then that process file descriptors
