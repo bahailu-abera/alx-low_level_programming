@@ -65,6 +65,7 @@ void copy_file(char *file_from, char *file_to)
 
 	openFlags = O_CREAT | O_WRONLY | O_TRUNC;
 	filePerms = (S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH);
+	umask(0);
 
 	outputFd = open(file_to, openFlags, filePerms);
 
