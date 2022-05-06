@@ -67,7 +67,6 @@ void copy_file(char *file_from, char *file_to)
 	filePerms = (S_IRUSR | S_IWUSR | S_IWGRP | S_IRGRP | S_IROTH);
 
 	outputFd = open(file_to, openFlags, filePerms);
-	fchmod(outputFd, filePerms);
 
 	if (outputFd == -1)
 	{
