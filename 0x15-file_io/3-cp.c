@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 
 #ifndef BUF_SIZE
 #define BUF_SIZE 1024
@@ -107,6 +108,8 @@ int main(int args, char **argv)
 		exit(97);
 	}
 
+	if (strcmp(argv[1], argv[2]) == 0)
+		return (0);
 	copy_file(argv[1], argv[2]);
 
 	return (0);
