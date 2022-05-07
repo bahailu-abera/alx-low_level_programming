@@ -116,11 +116,9 @@ void print_header(ElfN_Ehdr head)
 	else
 		printf("  Class:                            ELF32\n");
 	if (head.e_ident[EI_DATA] == 0x02)
-		printf("  Data:
-                             2's complement, big-endian\n");
+		printf("  Data:                             2's complement, big-endian\n");
 	else
-		printf("  Data:
-                             2's complement, little-endian\n");
+		printf("  Data:                             2's complement, little-endian\n");
 
 	if (head.e_ident[6] == 0x01)
 		printf("  Version:                          1 (current)\n");
@@ -154,8 +152,7 @@ void print_header(ElfN_Ehdr head)
 		printf("  OS/ABI:                           UNIX TRU64\n");
 		break;
 	case ELFOSABI_ARM:
-		printf("  OS/ABI:
-                           ARM architecture\n");
+		printf("  OS/ABI:                           ARM architecture\n");
 		break;
 	default:
 		printf("\n");
@@ -167,35 +164,28 @@ void print_header(ElfN_Ehdr head)
 	switch (head.e_type)
 	{
 	case ET_NONE:
-		printf("  Type:
-                             An unknown type\n");
+		printf("  Type:                    An unknown type\n");
 		break;
 	case ET_REL:
-		printf("  Type:
-                             A relocatable fil\n");
+		printf("  Type:                     A relocatable fil\n");
 		break;
 	case ET_EXEC:
-		printf("  Type:
-                             EXEC (Executable file)\n");
+		printf("  Type:                     EXEC (Executable file)\n");
 		break;
 	case ET_DYN:
-		printf("  Type:
-                             DYN (Shared object file)\n");
+		printf("  Type:                    DYN (Shared object file)\n");
 		break;
 	case ET_CORE:
-		printf("  Type:
-                             A core file\n");
+		printf("  Type:                     A core file\n");
 		break;
 	default:
 		break;
 	}
 
 	if (ONE << BIT)
-		printf("  Entry point address:
-              0x%llx\n", head.e_entry);
+		printf("  Entry point address:         0x%llx\n", head.e_entry);
 	else
-		printf("  Entry point address:
-              0x%lux\n", head.e_entry);
+		printf("  Entry point address:         0x%lux\n", head.e_entry);
 }
 
 /**
@@ -204,7 +194,7 @@ void print_header(ElfN_Ehdr head)
  *
  *@args: number of command line arguments
  *@argv: array of command line arguments
- *@Return: Always (0)
+ *@Return int
  */
 
 int main(int args, char **argv)
