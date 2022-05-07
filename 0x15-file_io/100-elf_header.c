@@ -40,8 +40,7 @@
  * @shnum: holds the number of entries in the section header table.
  * @shstrndx: holds  the section header table index of the entry
  * associated with the section name string table
- * @Description: it is a strucuture that holds the binary file
- * read from elf file.
+ * 
  */
 typedef struct
 {
@@ -183,7 +182,7 @@ void print_header(ElfN_Ehdr head)
 	}
 
 	if (ONE << BIT)
-		printf("  Entry point address:         0x%llx\n", head.e_entry);
+		printf("  Entry point address:         0x%lux\n", head.e_entry);
 	else
 		printf("  Entry point address:         0x%lux\n", head.e_entry);
 }
