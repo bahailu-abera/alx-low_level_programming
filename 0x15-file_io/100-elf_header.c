@@ -1,231 +1,246 @@
 #include <stdio.h>
-#include <elf.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <fcntl.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <unistd.h>
-
-#define ONE 1
-#define BIT 31
-#define OVERFLOW 0
-
-#if (ONE << BIT) == OVERFLOW
-#define ElfN_Addr Elf32_Addr
-#define ElfN_Off Elf32_Off
-
-#else
-#define ElfN_Addr Elf64_Addr
-#define ElfN_Off Elf64_Off
-#endif
+#include <elf.h>
 
 /**
- * struct ElfN_Ehdr - strucuture of the elf
- *
- * @e_ident: array of bytes specifies how to interpret the file
- * @e_type: identifies the object file type
- * @e_machine: specifies the required architecture
- * for an individual file.
- * @e_version: identifies the file version:
- * @e_entry: gives the virtual address to which the system first
- * transfers control, thus starting the process.
- * @e_phoff: holds the program header table's file offset in bytes
- * @shoff: holds the section header table's file offset in bytes
- * @flags:holds processor-specific flags associated with the file.
- * @e_ehsize: holds processor-specific flags associated with the file.
- * @phentsize: the size in bytes of one entry in the
- * file's program header table;
- * @phnum: holds the number of entries in the program header table
- * @shentsize: holds a sections header's size in bytes.
- * @shnum: holds the number of entries in the section header table.
- * @shstrndx: holds  the section header table index of the entry
- * associated with the section name string table
- * 
+ * print_addr - prints address
+ * @ptr: magic.
+ * Return: no return.
  */
-typedef struct
-{
-	unsigned char e_ident[EI_NIDENT];
-	uint16_t e_type;
-	uint16_t e_machine;
-	uint32_t e_version;
-	ElfN_Addr e_entry;
-	ElfN_Off e_phoff;
-	ElfN_Off e_shoff;
-	uint32_t e_flags;
-	uint16_t e_ehsize;
-	uint16_t e_phentsize;
-	uint16_t e_phnum;
-	uint16_t e_shentsize;
-	uint16_t e_shnum;
-	uint16_t e_shstrndx;
-} ElfN_Ehdr;
-
-/**
- * @check_file - checks if the file is one the elf
- * file format.
- *
- * @head: head of the file
- *
- * @Return: the description of the file type
- */
-int check_File(ElfN_Ehdr head)
-{
-
-	switch (head.e_type)
-	{
-	case ET_NONE:
-		return (1);
-	case ET_REL:
-		return (2);
-	case ET_EXEC:
-		return (3);
-	case ET_DYN:
-		return (4);
-	case ET_CORE:
-		return (5);
-	default:
-		return (0);
-	}
-}
-
-/**
- * @print_header - prints the header info
- * of the elf file
- *
- * @head: the head of the elf file
- *
- * @Return: void
- */
-void print_header(ElfN_Ehdr head)
+void print_addr(char *ptr)
 {
 	int i;
+	int begin;
+	char sys;
 
-	printf("ELF Header:\n  Magic:   ");
-	for (i = 0; i < 16; i++)
+	printf("  Entry point address:               0x");
+
+	sys = ptr[4] + '0';
+	if (sys == '1')
 	{
-		if (i < 3)
-			printf("%x ", head.e_ident[i]);
-		else
-			printf("0%x ", head.e_ident[i]);
+		begin = 26;
+		printf("80");
+		for (i = begin; i >= 22; i--)
+		{
+			if (ptr[i] > 0)
+				printf("%x", ptr[i]);
+			else if (ptr[i] < 0)
+				printf("%x", 256 + ptr[i]);
+		}
+		if (ptr[7] == 6)
+			printf("00");
+	}
+
+	if (sys == '2')
+	{
+		begin = 26;
+		for (i = begin; i > 23; i--)
+		{
+			if (ptr[i] >= 0)
+				printf("%02x", ptr[i]);
+
+			else if (ptr[i] < 0)
+				printf("%02x", 256 + ptr[i]);
+
+		}
 	}
 	printf("\n");
-
-	if (head.e_ident[EI_CLASS] == 0x02)
-		printf("  Class:                            ELF64\n");
-	else
-		printf("  Class:                            ELF32\n");
-	if (head.e_ident[EI_DATA] == 0x02)
-		printf("  Data:                             2's complement, big-endian\n");
-	else
-		printf("  Data:                             2's complement, little-endian\n");
-
-	if (head.e_ident[6] == 0x01)
-		printf("  Version:                          1 (current)\n");
-	else
-		printf("  Version:                          1 (current)\n");
-
-	switch (head.e_ident[7])
-	{
-	case ELFOSABI_SYSV:
-		printf("  OS/ABI:                           UNIX - System V\n");
-		break;
-	case ELFOSABI_HPUX:
-		printf("  OS/ABI:                           HP-UX\n");
-		break;
-	case ELFOSABI_NETBSD:
-		printf("  OS/ABI:                           UNIX NetBSD\n");
-		break;
-	case ELFOSABI_LINUX:
-		printf("  OS/ABI:                           Linux\n");
-		break;
-	case ELFOSABI_SOLARIS:
-		printf("  OS/ABI:                           UNIX Solaris\n");
-		break;
-	case ELFOSABI_IRIX:
-		printf("  OS/ABI:                           IRIX \n");
-		break;
-	case ELFOSABI_FREEBSD:
-		printf("  OS/ABI:                           FreeBSD\n");
-		break;
-	case ELFOSABI_TRU64:
-		printf("  OS/ABI:                           UNIX TRU64\n");
-		break;
-	case ELFOSABI_ARM:
-		printf("  OS/ABI:                           ARM architecture\n");
-		break;
-	default:
-		printf("\n");
-		break;
-	}
-
-	printf("  ABI Version:                      %d\n", head.e_ident[8]);
-
-	switch (head.e_type)
-	{
-	case ET_NONE:
-		printf("  Type:                    An unknown type\n");
-		break;
-	case ET_REL:
-		printf("  Type:                     A relocatable fil\n");
-		break;
-	case ET_EXEC:
-		printf("  Type:                     EXEC (Executable file)\n");
-		break;
-	case ET_DYN:
-		printf("  Type:                    DYN (Shared object file)\n");
-		break;
-	case ET_CORE:
-		printf("  Type:                     A core file\n");
-		break;
-	default:
-		break;
-	}
-
-	if (ONE << BIT)
-		printf("  Entry point address:         0x%lux\n", head.e_entry);
-	else
-		printf("  Entry point address:         0x%lux\n", head.e_entry);
 }
 
 /**
- * @main - a program to read and print the header
- * of elf(executable and Linkable format) file
- *
- *@args: number of command line arguments
- *@argv: array of command line arguments
- *@Return int
+ * print_type - prints type
+ * @ptr: magic.
+ * Return: no return.
  */
-
-int main(int args, char **argv)
+void print_type(char *ptr)
 {
-	int fd, is_elf;
-	ElfN_Ehdr ehdr;
+	char type = ptr[16];
 
-	if (args != 2)
+	if (ptr[5] == 1)
+		type = ptr[16];
+	else
+		type = ptr[17];
+
+	printf("  Type:                              ");
+	if (type == 0)
+		printf("NONE (No file type)\n");
+	else if (type == 1)
+		printf("REL (Relocatable file)\n");
+	else if (type == 2)
+		printf("EXEC (Executable file)\n");
+	else if (type == 3)
+		printf("DYN (Shared object file)\n");
+	else if (type == 4)
+		printf("CORE (Core file)\n");
+	else
+		printf("<unknown: %x>\n", type);
+}
+
+/**
+ * print_osabi - prints osabi
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_osabi(char *ptr)
+{
+	char osabi = ptr[7];
+
+	printf("  OS/ABI:                            ");
+	if (osabi == 0)
+		printf("UNIX - System V\n");
+	else if (osabi == 2)
+		printf("UNIX - NetBSD\n");
+	else if (osabi == 6)
+		printf("UNIX - Solaris\n");
+	else
+		printf("<unknown: %x>\n", osabi);
+
+	printf("  ABI Version:                       %d\n", ptr[8]);
+}
+
+
+/**
+ * print_version - prints version
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_version(char *ptr)
+{
+	int version = ptr[6];
+
+	printf("  Version:                           %d", version);
+
+	if (version == EV_CURRENT)
+		printf(" (current)");
+
+	printf("\n");
+}
+/**
+ * print_data - prints data
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_data(char *ptr)
+{
+	char data = ptr[5];
+
+	printf("  Data:                              2's complement");
+	if (data == 1)
+		printf(", little endian\n");
+
+	if (data == 2)
+		printf(", big endian\n");
+}
+/**
+ * print_magic - prints magic info.
+ * @ptr: magic.
+ * Return: no return.
+ */
+void print_magic(char *ptr)
+{
+	int bytes;
+
+	printf("  Magic:  ");
+
+	for (bytes = 0; bytes < 16; bytes++)
+		printf(" %02x", ptr[bytes]);
+
+	printf("\n");
+
+}
+
+/**
+ * check_sys - check the version system.
+ * @ptr: magic.
+ * Return: no return.
+ */
+void check_sys(char *ptr)
+{
+	char sys = ptr[4] + '0';
+
+	if (sys == '0')
+		exit(98);
+
+	printf("ELF Header:\n");
+	print_magic(ptr);
+
+	if (sys == '1')
+		printf("  Class:                             ELF32\n");
+
+	if (sys == '2')
+		printf("  Class:                             ELF64\n");
+
+	print_data(ptr);
+	print_version(ptr);
+	print_osabi(ptr);
+	print_type(ptr);
+	print_addr(ptr);
+}
+
+/**
+ * check_elf - check if it is an elf file.
+ * @ptr: magic.
+ * Return: 1 if it is an elf file. 0 if not.
+ */
+int check_elf(char *ptr)
+{
+	int addr = (int)ptr[0];
+	char E = ptr[1];
+	char L = ptr[2];
+	char F = ptr[3];
+
+	if (addr == 127 && E == 'E' && L == 'L' && F == 'F')
+		return (1);
+
+	return (0);
+}
+
+/**
+ * main - check the code for Holberton School students.
+ * @argc: number of arguments.
+ * @argv: arguments vector.
+ * Return: Always 0.
+ */
+int main(int argc, char *argv[])
+{
+	int fd, ret_read;
+	char ptr[27];
+
+	if (argc != 2)
 	{
-		printf("Usage: %s\n", argv[0]);
-		exit(97);
+		dprintf(STDERR_FILENO, "Usage: elf_header elf_filename\n");
+		exit(98);
 	}
 
 	fd = open(argv[1], O_RDONLY);
 
-	if (fd == -1)
+	if (fd < 0)
 	{
-		printf("Unable to open the file\n");
+		dprintf(STDERR_FILENO, "Err: file can not be open\n");
 		exit(98);
 	}
-	read(fd, &ehdr, sizeof(ehdr));
 
-	is_elf = check_File(ehdr);
+	lseek(fd, 0, SEEK_SET);
+	ret_read = read(fd, ptr, 27);
 
-	if (is_elf == 0)
+	if (ret_read == -1)
 	{
-		printf("Unkown file format: \n");
-		exit(99);
+		dprintf(STDERR_FILENO, "Err: The file can not be read\n");
+		exit(98);
 	}
-	else
-		print_header(ehdr);
-    close(fd);
+
+	if (!check_elf(ptr))
+	{
+		dprintf(STDERR_FILENO, "Err: It is not an ELF\n");
+		exit(98);
+	}
+
+	check_sys(ptr);
+	close(fd);
 
 	return (0);
 }
