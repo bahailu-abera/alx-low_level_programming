@@ -7,7 +7,7 @@
  *
  * Return: the length of the dlist
  */
-size_t dlistint_len(const dlistint_s *h)
+size_t dlistint_len(const dlistint_t *h)
 {
 	size_t len = 0;
 
