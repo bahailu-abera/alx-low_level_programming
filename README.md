@@ -36,4 +36,5 @@ All folders in the project with description.
 |0x15-file_io |	It aims to learn about how to handle files (open, close, read and write), file descriptors, system calls and file permissions in C language
 |0x17-doubly_linked_lists	 | It aims to learn about doubly linked list in C language
 |0x18-dynamic_libraries | It aims to learn how to create and use dynamic libraries in linux
+|0x1A-hash_tables | It aims to learn to implement hash table data structures using c programming language |
 
