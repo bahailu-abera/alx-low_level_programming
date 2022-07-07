@@ -20,10 +20,8 @@ void hash_table_print(const hash_table_t *ht)
 	short bool;
 
 	if (ht == NULL)
-	{
-		printf("{}\n");
 		return;
-	}
+
 
 	size = ht->size;
 	bool = NOTPRINT;
