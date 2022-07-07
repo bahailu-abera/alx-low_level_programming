@@ -32,6 +32,58 @@ shash_table_t *shash_table_create(unsigned long int size)
 }
 
 /**
+ * shash_table_set_sorted - adds an element in the sorted linked list
+ *
+ * @ht: the hash table
+ * @new: the new node to be added
+ *
+ * Return: 1 on success or 0 on failure.
+ */
+int shash_table_set_sorted(shash_table_t *ht, shash_node_t *new)
+{
+	shash_node_t *shead, *stail;
+
+	if (ht == NULL || new == NULL)
+		return (0);
+
+	shead = ht->shead;
+	stail = ht->stail;
+
+	while (shead != NULL)
+	{
+		if (strcmp(new->key, shead->key) < 0)
+		{
+			new->sprev = shead->sprev;
+			new->snext = shead;
+			if (shead->sprev != NULL)
+			{
+				shead->sprev->snext = new;
+			}
+			else
+				ht->shead = new;
+			shead->sprev = new;
+			return (1);
+		}
+		if (strcmp(stail->key, new->key) < 0)
+		{
+			new->snext = stail->snext;
+			new->sprev = stail;
+			if (stail->snext != NULL)
+				stail->snext->sprev = new;
+			stail->snext = new;
+
+			if (new->snext == NULL)
+				ht->stail = new;
+			return (1);
+		}
+		shead = shead->snext;
+		stail = stail->sprev;
+	}
+	ht->shead = new, ht->stail = new;
+	return (1);
+}
+
+/**
  * shash_table_set - adds an element to the hash table.
  *
  * @ht: the hash table data structure.
@@ -44,7 +96,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int size;
 	unsigned long int index;
-	shash_node_t *node, *shead, *stail;
+	shash_node_t *node;
 
 	if (ht == NULL || key == NULL || *key == '\0')
 		return (0);
@@ -71,47 +123,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
 	node->snext = NULL;
 	ht->array[index] = node;
 
-	shead = ht->shead;
-	stail = ht->stail;
-
-	while (shead != NULL)
-	{
-		if (strcmp(node->key, shead->key) < 0)
-		{
-			node->sprev = shead->sprev;
-			node->snext = shead;
-
-			if (shead->sprev != NULL)
-			{
-				shead->sprev->snext = node;
-			}
-			else
-				ht->shead = node;
-			shead->sprev = node;
-
-			return (1);
-		}
-
-		if (strcmp(stail->key, key) < 0)
-		{
-			node->snext = stail->snext;
-			node->sprev = stail;
-			if (stail->snext != NULL)
-				stail->snext->sprev = node;
-			stail->snext = node;
-
-			if (node->snext == NULL)
-				ht->stail = node;
-			return (1);
-		}
-
-		shead = shead->snext;
-		stail = stail->sprev;
-	}
-
-	ht->shead = node, ht->stail = node;
-
-	return (1);
+	return (shash_table_set_sorted(ht, node));
 }
 
 /**
@@ -121,7 +133,7 @@ int shash_table_set(shash_table_t *ht, const char *key, const char *value)
  *
  * Return: the value associated with the @key or NULL(on failure).
  */
-char * shash_table_get(const shash_table_t *ht, const char *key)
+char *shash_table_get(const shash_table_t *ht, const char *key)
 {
 	unsigned long int index;
 	unsigned long int size;
