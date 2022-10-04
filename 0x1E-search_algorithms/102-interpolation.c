@@ -17,7 +17,8 @@ int interpolation_search(int *array, size_t size, int value)
 	if (array == NULL)
 		return (-1);
 
-	while ((value >= array[l] && value <= array[h]))
+	while ((array[h] != array[l] && (value >= array[l]) &&
+				  (value <= array[h])))
 	{
 		pos = l + (((double)(h - l) / (array[h] - array[l])) *
 			   (value - array[l]));
@@ -29,6 +30,8 @@ int interpolation_search(int *array, size_t size, int value)
 		else
 			return (pos);
 	}
+	if (value == array[pos])
+		return (pos);
 
 	return (-1);
 }
