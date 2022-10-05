@@ -2,6 +2,10 @@
 #include <math.h>
 #include "search_algos.h"
 
+#ifndef min
+#define min(a, b) ((a < b) ? (a) : (b))
+#endif
+
 /**
  * jump_list - searches for a value in a sorted list of integers
  *
@@ -22,7 +26,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 	root = sqrt(size);
 	prev = cur = list;
-	while (cur->n < value)
+	while (cur->n < value && cur->index < size - 1)
 	{
 		prev = cur;
 		while (cur != NULL && cur->index < prev->index + root)
