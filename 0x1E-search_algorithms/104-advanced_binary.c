@@ -32,22 +32,22 @@ int recursive_binary(int *array, size_t low, size_t high, int value)
 {
 	size_t mid;
 
-	if (low >= high)
-	{
-		if (array[low] == value)
-			return ((int)low);
-		if (low == high)
-			print_array(array, low, high);
+	if (low > high)
 		return (-1);
-	}
+
 	print_array(array, low, high);
 	mid = (low + high) / 2;
+
 	if (value == array[mid])
-		return (recursive_binary(array, low, mid, value));
-	else if (value < array[mid])
+	{
+		if (low < mid)
+			return (recursive_binary(array, low, mid, value));
+		return ((int)mid);
+	}
+	if (value < array[mid])
 		return (recursive_binary(array, low, mid - 1, value));
-	else
-		return (recursive_binary(array, mid + 1, high, value));
+
+	return (recursive_binary(array, mid + 1, high, value));
 }
 
 /**
