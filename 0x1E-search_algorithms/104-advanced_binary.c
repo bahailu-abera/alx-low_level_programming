@@ -30,24 +30,19 @@ void print_array(int *array, int low, int high)
  */
 int recursive_binary(int *array, size_t low, size_t high, int value)
 {
-	size_t mid;
-
-	if (low > high)
-		return (-1);
+	size_t mid = low + (high - low) / 2;
 
 	print_array(array, low, high);
-	mid = (low + high) / 2;
 
-	if (value == array[mid])
-	{
-		if (low < mid)
-			return (recursive_binary(array, low, mid, value));
-		return ((int)mid);
-	}
-	if (value < array[mid])
-		return (recursive_binary(array, low, mid - 1, value));
-
-	return (recursive_binary(array, mid + 1, high, value));
+	if (low == high && value != array[mid])
+		return (-1);
+	else if (value > array[mid])
+		mid = recursive_binary(array, mid + 1, high, value);
+	else if (value < array[mid])
+		mid = recursive_binary(array, low, mid, value);
+	else if (mid != 0 && array[mid - 1] == value)
+		mid = recursive_binary(array, low, mid, value);
+	return (mid);
 }
 
 /**
@@ -64,5 +59,5 @@ int advanced_binary(int *array, size_t size, int value)
 {
 	if (array == NULL || size == 0)
 		return (-1);
-	return (recursive_binary(array, 0, (int)size - 1, value));
+	return (recursive_binary(array, 0, size - 1, value));
 }
