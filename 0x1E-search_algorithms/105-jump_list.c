@@ -24,8 +24,7 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 	if (list == NULL)
 		return (NULL);
 
-	root = sqrt(size);
-	prev = cur = list;
+	root = sqrt(size), prev = cur = list;
 	while (cur->n < value && cur->index < size - 1)
 	{
 		prev = cur;
@@ -44,7 +43,6 @@ listint_t *jump_list(listint_t *list, size_t size, int value)
 
 		printf("Value checked at index [%d] = [%d]\n", (int)cur->index, cur->n);
 	}
-
 	root = min(prev->index + root, size - 1);
 	printf("Value found between indexes [%d] and [%d]\n", (int)prev->index,
 	       (int)root);
