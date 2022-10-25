@@ -23,6 +23,8 @@ def island_perimeter(grid):
                 if last_col is None or last_col < j:
                     last_col = j
                 last_row = i
+    if first_row is None:
+        return (0)
     perimeter = 2 * (last_col - first_col + last_row - first_row + 2)
 
     return perimeter
