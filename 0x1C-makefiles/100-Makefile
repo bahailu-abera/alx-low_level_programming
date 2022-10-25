@@ -5,7 +5,9 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 DEPS = m.h
 
-all: $(SRC)
+all: $(NAME)
+
+$(NAME): $(SRC)
 	$(CC)  $^ -o $(NAME)
 clean:
 	$(RM)  *~ $(NAME)
