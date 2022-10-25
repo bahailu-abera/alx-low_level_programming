@@ -5,13 +5,12 @@ OBJ = $(SRC:.c=.o)
 NAME = school
 DEPS = m.h
 
-all: $(NAME)
-
-$(NAME): $(SRC)
-	$(CC) $(CFLAGS) $^ -o $@
+all: $(SRC)
+	$(CC)  $^ -o $@
 clean:
 	$(RM)  *~ $(NAME)
 oclean:
 	$(RM)  $(OBJ)
 fclean: clean oclean
+
 re: oclean all
