@@ -7,7 +7,7 @@ DEPS = m.h
 
 all: $(NAME)
 
-$(NAME): $(SRC)
+$(NAME): $(OBJ)
 	$(CC)  $^ -o $(NAME)
 clean:
 	$(RM)  *~ $(NAME)
@@ -15,4 +15,4 @@ oclean:
 	$(RM)  $(OBJ)
 fclean: clean oclean
 
-re: oclean all
+re: oclean $(NAME)
