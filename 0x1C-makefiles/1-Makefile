@@ -1,0 +1,9 @@
+CC := gcc
+SRC := main.c school.c
+
+DEPS := m.h
+
+all: build
+
+build: $(SRC)
+	$(CC) -o school $^
