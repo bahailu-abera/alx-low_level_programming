@@ -4,15 +4,14 @@ SRC = main.c school.c
 OBJ = $(SRC:.c=.o)
 NAME = school
 DEPS = m.h
-RM = rm
 
 all: $(NAME)
 
 $(NAME): $(SRC)
 	$(CC) $(CFLAGS) $^ -o $@
 clean:
-	$(RM) -f *~ $(NAME)
+	$(RM)  *~ $(NAME)
 oclean:
-	$(RM) -f $(OBJ)
+	$(RM)  $(OBJ)
 fclean: clean oclean
 re: oclean all
