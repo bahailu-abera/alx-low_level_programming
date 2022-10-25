@@ -1,0 +1,13 @@
+CC = gcc
+SRC = main.c school.c
+OBJS = $(SRC:.c=.o)
+NAME = school
+DEPS = m.h
+
+all: $(NAME)
+
+$(NAME): $(OBJS)
+	$(CC) $^ -o $@
+
+%.o: %.c
+	$(CC) -c -o $@ $<
