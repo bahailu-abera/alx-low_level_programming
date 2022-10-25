@@ -6,7 +6,7 @@ NAME = school
 DEPS = m.h
 
 all: $(SRC)
-	$(CC)  $^ -o $@
+	$(CC)  $^ -o $(NAME)
 clean:
 	$(RM)  *~ $(NAME)
 oclean:
